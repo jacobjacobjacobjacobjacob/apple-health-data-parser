@@ -10,6 +10,7 @@ from .constants.paths import EXTRACTION_PATH, ZIP_FILE_PATH
 def unzip_export(
     extraction_path: str = EXTRACTION_PATH, zip_file: str = ZIP_FILE_PATH
 ) -> None:
+    """Unzips the export.zip file to the specified extraction path."""
     try:
         with zipfile.ZipFile(zip_file, "r") as zip_ref:
             zip_ref.extractall(extraction_path)
