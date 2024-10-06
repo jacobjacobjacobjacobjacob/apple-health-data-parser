@@ -1,10 +1,12 @@
 # src/data_cleaning.py
-import json
-
+import time
 from loguru import logger
 import pandas as pd
 
-class DataCleaning:
-    def __init__(self):
-        pass
+def clean_all_data() -> dict:
+    logger.info("Cleaning all data.")
+    start_time = time.time()
+    return None
+        
 
+    
