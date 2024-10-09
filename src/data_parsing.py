@@ -70,8 +70,7 @@ def parse_all_data() -> dict:
         "workout": [WorkoutDataParser],
     }
 
-    # Process each category
-    # Process each category
+    # Process each category of data
     for category, parser_classes in parsers.items():
         category_start_time = time.time()  # Start timer for the category
         category_data = []
