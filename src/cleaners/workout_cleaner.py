@@ -1,12 +1,10 @@
 # src/cleaners/workout_cleaner.py
 import re
-
 import pandas as pd
 from loguru import logger
-
 from src.cleaners.base_cleaner import BaseCleaner
 from src.constants.paths import CLEANED_DATA_DIRECTORY
-from ..utils import save_csv_to_file
+from src.utils import save_csv_to_file
 
 
 class WorkoutCleaner(BaseCleaner):
@@ -54,16 +52,14 @@ class WorkoutCleaner(BaseCleaner):
             self.df["workout_type"] = self.df["workout_type"].apply(
                 self.fetch_activity_type
             )
-
+            self.df = self.filter_by_year()
             self.df = self.calculate_start_end_times()
             self.df = self.split_datetime_columns()
             self.df = self.reorder_datetime_columns()
+            self.df = self.round_column_values(column="duration")
 
             # Drop workouts that have a duration of less than 5 minutes and conert to int
             self.df = self.df[self.df["duration"] >= 5]
-            self.df["duration"] = pd.to_numeric(self.df["duration"], errors="coerce").round(0).astype(int)
-
-
 
             # Reorder columns
             column_order = [
