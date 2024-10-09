@@ -30,7 +30,7 @@ class BaseCleaner:
         self.df["year"] = self.df["date"].dt.year
         self.df["month"] = self.df["date"].dt.month
         self.df["day"] = self.df["date"].dt.day
-        self.df["day_of_week"] = self.df["date"].dt.isoweekday() # Use isoweekday for Monday=1, Sunday=7
+        self.df["day_of_week"] = self.df["date"].dt.weekday # Monday=1, Sunday=7
         self.df = self.df.drop(columns=["date"])
 
         return self.df
