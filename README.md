@@ -94,7 +94,7 @@ from src.data_cleaning import clean_all_data
 clean_all_data()
 ```
 
-This will clean and save the processed data into the `CLEANED_DATA_DIRECTORY`.
+This will clean and save the processed data into the `CLEANED_DATA_DIRECTORY`. 
 
 ## Log Output
 This project uses `loguru` for logging all operations. Logs include details on the number of records parsed, errors, and processing times.
