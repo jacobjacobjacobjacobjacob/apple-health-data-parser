@@ -61,7 +61,9 @@ This project is a comprehensive parser and cleaner for health and workout data, 
 
 ## Usage
 ### 1. Export your Apple Health data
- Export your data from the "Health" app on your iPhone (Browse -> Profile -> Export All Health Data)
+ Export your data from the "Health" app on your iPhone (Browse -> Profile -> Export All Health Data). 
+
+ This will give you a folder called "apple_health_export", place this folder in data/raw/.
 
 ### 2. Unzipping the Apple Health Export
 To unzip the `export.zip` file containing the Apple Health data:
