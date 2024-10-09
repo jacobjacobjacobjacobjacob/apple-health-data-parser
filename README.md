@@ -17,9 +17,14 @@ This project is a comprehensive parser and cleaner for health and workout data, 
 .
 ├── src/
 │   ├── constants/
-│   │   └── paths.py            # Paths for data directories and files
+│   │   └── activity.py          # Constants for activity data
+│   │   └── health.py            # Constants for health data
+│   │   └── paths.py             # Paths for data directories and files
+│   │   └── sleep.py             # Constants for sleep data
+│   │   └── workout.py           # Constants for workout data
 │   ├── parsers/
 │   │   ├── activity_parsers.py  # Parsers for activity data
+│   │   ├── base_parser.py       # Base parser template
 │   │   ├── health_parsers.py    # Parsers for health-related data
 │   │   ├── sleep_parsers.py     # Parsers for sleep data
 │   │   └── workout_parser.py    # Parser for workout data
@@ -34,6 +39,9 @@ This project is a comprehensive parser and cleaner for health and workout data, 
 │   └── utils.py                 # Utility functions (e.g., saving data to JSON)
 ├── README.md                    # Project documentation
 └── requirements.txt             # Python dependencies
+└── main.py                      # Main entry point
+├── tests/
+│   ├── test_data_loading.py     # Test the data loading/unzipping
 ```
 
 ## Installation
