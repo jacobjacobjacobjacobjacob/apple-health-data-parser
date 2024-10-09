@@ -3,6 +3,7 @@ import json
 import os
 import pandas as pd
 from loguru import logger
+from src.constants.files import CLEAN_DATA_FILES
 
 def convert_to_json(data: list) -> str:
     return json.dumps(data, indent=4)
@@ -47,6 +48,8 @@ def save_csv_to_file(data: pd.DataFrame, directory: str, filename: str, overwrit
     # Save the DataFrame to a CSV file
     data.to_csv(file_path, index=False)
     logger.info(f"Data saved to: {file_path}")
+    # Add the file path to the list of cleaned data files
+    CLEAN_DATA_FILES.append(filename)
 
 
 def check_if_file_exists(file_path: str) -> bool:
