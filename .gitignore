@@ -3,6 +3,7 @@
 *.xml
 *.json
 *.venv
+*.csv
 .pytest_cache
 __pychache__
 ipynb_checkpoints
