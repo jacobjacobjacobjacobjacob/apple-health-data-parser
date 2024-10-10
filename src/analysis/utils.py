@@ -1,4 +1,12 @@
 # src/analysis/utils.py
+import pandas as pd
+
+
+def map_weekdays_and_months(df: pd.DataFrame):
+    df["day_of_week"] = df["day_of_week"].map(WEEKDAY_MAPPING)
+    df["month"] = df["month"].map(MONTH_MAPPING)
+    return df
+
 
 MONTH_MAPPING = {
     1: "Jan",
