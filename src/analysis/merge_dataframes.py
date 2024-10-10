@@ -2,7 +2,7 @@
 import pandas as pd
 from loguru import logger
 
-from utils import MONTH_MAPPING, WEEKDAY_MAPPING
+from src.analysis.utils import MONTH_MAPPING, WEEKDAY_MAPPING
 
 
 class DataFrameMerger:

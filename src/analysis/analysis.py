@@ -1,11 +1,10 @@
 # src/analysis/analysis.py
-import pandas as pd
-from load_dataframes import DataFrameLoader
-from merge_dataframes import DataFrameMerger
-from summaries.monthly_summary import get_monthly_mean_summary, get_monthly_sum_summary
+from src.analysis.load_dataframes import DataFrameLoader
+from src.analysis.merge_dataframes import DataFrameMerger
+from src.analysis.summaries.monthly_summary import get_monthly_mean_summary, get_monthly_sum_summary
+from src.constants.paths import CLEANED_DATA_DIRECTORY
 
-# Load the dataframes
-loader = DataFrameLoader("/Users/daniel/Desktop/python/apple_health/data/cleaned")
+loader = DataFrameLoader(CLEANED_DATA_DIRECTORY)
 dataframes = loader.load_all_dataframes()
 print(dataframes)
 
