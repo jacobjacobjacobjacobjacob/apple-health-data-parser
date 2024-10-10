@@ -104,6 +104,19 @@ Now that the data is cleaned and structured, you can analyse it further. For exa
 | Feb   | 60580         | 69262           | 389641     | 3789           | 1809             | 38             | 196         |
 | Mar   | 61602         | 31684           | 207076     | 836           | 399             | 6             | 220         |
 
+You can apply filtering, and get the mean stats to display how much you slept each night, the average number of steps etc.
+```
+monthly_mean[monthly_mean['Month'].isin(['Jun', 'Jul', 'Aug'])][
+    ["Month", "Exercise Time", "Step Count", "Resting Heartrate", "VO2 Max", "Sleep Hours"]
+]
+```
+| Month | Exercise Time | Step Count | Resting Heartrate | VO2 Max | Sleep Hours |
+|-------|---------------|------------|-------------------|---------|-------------|
+| Jun   | 107.5         | 9400.3     | 52.7              | 47.2    | 6.7         |
+| Jul   | 106.1         | 10378.4    | 55.9              | 49.2    | 7.3         |
+| Aug   | 126.3         | 12569.1    | 50.4              | 50.7    | 6.5         |
+
+
 
 
 ## Log Output
