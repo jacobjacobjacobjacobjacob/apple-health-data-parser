@@ -48,7 +48,7 @@ class WorkoutCleaner(BaseCleaner):
         if self.df is not None:
             logger.info("Cleaning workout data.")
 
-            # Ensure the 'date' column is in the correct format by filtering by year first
+     
             self.df = self.filter_by_year()
             # Extract workout types
             self.df["workout_type"] = self.df["workout_type"].apply(
@@ -62,6 +62,8 @@ class WorkoutCleaner(BaseCleaner):
             self.df = self.round_column_values(column="duration")
             # Drop workouts that have a duration of less than 5 minutes and convert to int
             self.df = self.df[self.df["duration"] >= 5]
+            # Format "date" column as YYYY-MM-DD
+            self.df["date"] = self.df["date"].dt.strftime("%Y-%m-%d")
 
             #Reorder columns (if necessary)
             column_order = [

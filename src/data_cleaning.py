@@ -24,15 +24,16 @@ def clean_all_data() -> dict:
 
     # Workout data
     if os.path.exists(PARSED_WORKOUT_DATA_PATH):
+        print(PARSED_WORKOUT_DATA_PATH)
         cleaner = WorkoutCleaner(PARSED_WORKOUT_DATA_PATH)
         cleaner.clean_data()
 
-    # # Health data
+    # Health data
     if os.path.exists(PARSED_HEALTH_DATA_PATH):
         cleaner = HealthCleaner(PARSED_HEALTH_DATA_PATH)
         cleaner.clean_data()
 
-    # # Activity data
+    # Activity data
     if os.path.exists(PARSED_ACTIVITY_DATA_PATH):
         cleaner = ActivityCleaner(PARSED_ACTIVITY_DATA_PATH)
         cleaner.clean_data()
