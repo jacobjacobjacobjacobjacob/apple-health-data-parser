@@ -55,11 +55,17 @@ class SleepCleaner(BaseCleaner):
                 self.df = self.calculate_sleep_duration()
                 self.df = self.format_time_columns()
                 # Group by date and sleep_type, summing up the duration for each group
-                self.df = (
-                    self.df.groupby(["date", "sleep_type"])["duration"]
-                    .sum()
+                # Group by date and sleep_type, but keep the first start_time and last end_time for each group
+                grouped = (
+                    self.df.groupby(["date", "sleep_type"])
+                    .agg(
+                        duration=("duration", "sum"),
+                        start_time=("start_time", "min"),  # Earliest start time
+                        end_time=("end_time", "max"),  # Latest end time
+                    )
                     .reset_index()
                 )
+                self.df = grouped
                 self.df = self.split_datetime_columns()
                 self.df = self.reorder_datetime_columns()
 
