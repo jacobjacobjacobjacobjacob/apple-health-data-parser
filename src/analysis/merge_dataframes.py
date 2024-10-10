@@ -103,3 +103,4 @@ class DataFrameMerger:
         except Exception as e:
             logger.error(f"Error merging dataframes: {e}")
             raise
+

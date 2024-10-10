@@ -33,3 +33,4 @@ class DataFrameLoader:
             f"Finished loading {len(self.dataframes)} DataFrames from {self.directory}"
         )
         return self.dataframes
+    
