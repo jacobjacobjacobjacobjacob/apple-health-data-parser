@@ -100,18 +100,10 @@ This will clean and save the processed data into the `CLEANED_DATA_DIRECTORY`.
 Now that the data is cleaned and structured, you can analyse it further. For example, you can easily calculate the total values for each month in a specified year:
 | Month | Energy Burned | Physical Effort | Step Count | Exercise Time | Flights Climbed | Workout Hours | Sleep Hours |
 |-------|---------------|-----------------|------------|---------------|-----------------|---------------|-------------|
-| Jan   | 61062         | 30721           | 198777     | 380           | 262             | 0             | 202         |
-| Feb   | 57121         | 26598           | 158775     | 223           | 167             | 0             | 196         |
+| Jan   | 59562         | 86308           | 306409     | 2213           | 434             | 28             | 202         |
+| Feb   | 60580         | 69262           | 389641     | 3789           | 1809             | 38             | 196         |
 | Mar   | 61602         | 31684           | 207076     | 836           | 399             | 6             | 220         |
-| Apr   | 59562         | 86308           | 306409     | 2213          | 434             | 28            | 197         |
-| May   | 60593         | 83649           | 246052     | 2390          | 503             | 46            | 214         |
-| Jun   | 57912         | 84677           | 282010     | 3224          | 601             | 52            | 199         |
-| Jul   | 59463         | 67364           | 321730     | 3289          | 1352            | 51            | 226         |
-| Aug   | 60580         | 69262           | 389641     | 3789          | 1809            | 38            | 200         |
-| Sep   | 57755         | 70468           | 342144     | 2593          | 743             | 28            | 210         |
-| Oct   | 4468          | 1886            | 10994      | 15            | 21              | 0             | 16          |
-| Nov   | 0             | 0               | 0          | 0             | 0               | 0             | 0           |
-| Dec   | 0             | 0               | 0          | 0             | 0               | 0             | 0           |
+
 
 
 ## Log Output
