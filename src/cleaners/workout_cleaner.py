@@ -48,22 +48,24 @@ class WorkoutCleaner(BaseCleaner):
         if self.df is not None:
             logger.info("Cleaning workout data.")
 
+            # Ensure the 'date' column is in the correct format by filtering by year first
+            self.df = self.filter_by_year()
             # Extract workout types
             self.df["workout_type"] = self.df["workout_type"].apply(
                 self.fetch_activity_type
             )
-            self.df = self.filter_by_year()
+            # Calculate start and end times after the 'date' column is properly formatted
             self.df = self.calculate_start_end_times()
+            # Split 'date' into components
             self.df = self.split_datetime_columns()
             self.df = self.reorder_datetime_columns()
             self.df = self.round_column_values(column="duration")
-
-            # Drop workouts that have a duration of less than 5 minutes and conert to int
+            # Drop workouts that have a duration of less than 5 minutes and convert to int
             self.df = self.df[self.df["duration"] >= 5]
 
-            # Reorder columns
+            #Reorder columns (if necessary)
             column_order = [
-                "day",
+                "date",
                 "month",
                 "year",
                 "day_of_week",
@@ -74,6 +76,7 @@ class WorkoutCleaner(BaseCleaner):
             ]
             self.df = self.df[column_order]
 
-        # Save to CSV file
-        save_csv_to_file(self.df, CLEANED_DATA_DIRECTORY, "cleaned_workout_data.csv")
+            # Save to CSV file
+            save_csv_to_file(self.df, CLEANED_DATA_DIRECTORY, "cleaned_workout_data.csv")
+
         return self.df

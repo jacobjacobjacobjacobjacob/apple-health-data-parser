@@ -41,7 +41,9 @@ class BaseCleaner:
 
         df_grouped = (
             self.df.groupby(["just_date", "type"])
-            .agg({"value": agg_type, "unit": "first"})  # Aggregate the data by aggregation type
+            .agg(
+                {"value": agg_type, "unit": "first"}
+            )  # Aggregate the data by aggregation type
             .reset_index()
         )
         df_grouped.rename(columns={"just_date": "date"}, inplace=True)
@@ -59,17 +61,17 @@ class BaseCleaner:
         # Split 'date' into 'year', 'month', 'day', and 'day_of_week'
         self.df["year"] = self.df["date"].dt.year
         self.df["month"] = self.df["date"].dt.month
-        self.df["day"] = self.df["date"].dt.day
+        
         self.df["day_of_week"] = self.df["date"].dt.weekday + 1  # Monday=1, Sunday=7
-        self.df = self.df.drop(columns=["date"])
-
+        
         return self.df
 
     def reorder_datetime_columns(self):
         """Reorders the DataFrame columns to have the datetime columns first."""
-        column_order = ["day", "month", "year", "day_of_week"]
+        column_order = ["date", "day_of_week", "month", "year"]
         remaining_columns = [col for col in self.df.columns if col not in column_order]
         self.df = self.df[column_order + remaining_columns]
+        
 
         return self.df
 
