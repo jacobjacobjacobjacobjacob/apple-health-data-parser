@@ -7,6 +7,7 @@ from summaries.monthly_summary import get_monthly_mean_summary, get_monthly_sum_
 # Load the dataframes
 loader = DataFrameLoader("/Users/daniel/Desktop/python/apple_health/data/cleaned")
 dataframes = loader.load_all_dataframes()
+print(dataframes)
 
 # Merge the dataframes
 merger = DataFrameMerger(dataframes)
