@@ -75,3 +75,4 @@ def get_monthly_sum_summary(df):
     grouped_df = grouped_df[columns_to_keep]
 
     return grouped_df
+
