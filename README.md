@@ -105,10 +105,9 @@ Now that the data is cleaned and structured, you can analyse it further. For exa
 | Mar   | 61602         | 31684           | 207076     | 836           | 399             | 6             | 220         |
 
 You can apply filtering, and get the mean stats to display how much you slept each night, the average number of steps etc.
-```
+```python
 monthly_mean[monthly_mean['Month'].isin(['Jun', 'Jul', 'Aug'])][
-    ["Month", "Exercise Time", "Step Count", "Resting Heartrate", "VO2 Max", "Sleep Hours"]
-]
+    ["Month", "Exercise Time", "Step Count", "Resting Heartrate", "VO2 Max", "Sleep Hours"]]
 ```
 | Month | Exercise Time | Step Count | Resting Heartrate | VO2 Max | Sleep Hours |
 |-------|---------------|------------|-------------------|---------|-------------|
