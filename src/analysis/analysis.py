@@ -16,8 +16,9 @@ merged_df = merger.merge_dataframes()
 # Generate summaries from the merged DataFrame
 monthly_mean_summary = get_monthly_mean_summary(df=merged_df)
 monthly_sum_summary = get_monthly_sum_summary(df=merged_df)
-# Print or log the summaries
+
+# Examples:
 print("Monthly Mean Summary:")
-# print(monthly_mean_summary)
+print(monthly_mean_summary)
 print("Monthly Sum Summary:")
 print(monthly_sum_summary)
