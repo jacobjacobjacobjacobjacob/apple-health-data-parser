@@ -7,7 +7,8 @@
 .pytest_cache
 __pychache__
 ipynb_checkpoints
-*.zip
+export.zip
 .DS_store
 /__pychache__/
 *.py[cod]
+tests/
