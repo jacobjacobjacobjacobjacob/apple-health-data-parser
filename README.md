@@ -13,9 +13,19 @@ This project is a comprehensive parser and cleaner for health and workout data, 
 
 ## Project Structure
 
+
 ```
 .
+├── data/
+│   ├── cleaned/                 # Clean data (CSV)
+│   ├── processed/               # Processed data (XML -> JSON)
+│   ├── raw/                     # Location for the "export.zip" file from the Apple Health Export.  
 ├── src/
+│   ├── analysis/
+│   │   ├── plots/               # Plotting functions
+│   │   │   └── examples/        # Directory to save plot examples as PNGs
+│   │   └── plot_utils.py        # Centralized functions to generate different plot types (line, box etc.) 
+│   │   └── plots.py             # Example plots 
 │   ├── constants/
 │   │   └── activity.py          # Constants for activity data
 │   │   └── health.py            # Constants for health data
@@ -40,8 +50,6 @@ This project is a comprehensive parser and cleaner for health and workout data, 
 ├── README.md                    # Project documentation
 └── requirements.txt             # Python dependencies
 └── main.py                      # Main entry point
-├── tests/
-│   ├── test_data_loading.py     # Test the data loading/unzipping
 ```
 
 ## Installation
@@ -114,6 +122,50 @@ monthly_mean[monthly_mean['Month'].isin(['Jun', 'Jul', 'Aug'])][
 | Jun   | 107.5         | 9400.3     | 52.7              | 47.2    | 6.7         |
 | Jul   | 106.1         | 10378.4    | 55.9              | 49.2    | 7.3         |
 | Aug   | 126.3         | 12569.1    | 50.4              | 50.7    | 6.5         |
+
+
+
+#### 1. DataFrame Loader
+The `DataFrameLoader` class allows you to load all CSV files from a specified directory into Pandas DataFrames, making the data preparation process more efficient.
+
+```python
+from src.analysis.load_dataframes import DataFrameLoader
+loader = DataFrameLoader(CLEANED_DATA_DIRECTORY)
+dataframes = loader.load_all_dataframes()
+```
+
+#### 2. DataFrame Merger
+The `DataFrameMerger` class facilitates the merging of various health and workout data into a single DataFrame for comprehensive analysis.
+
+```python
+from src.analysis.merge_dataframes import DataFrameMerger
+merger = DataFrameMerger(dataframes)
+merged_df = merger.merge_dataframes()
+```
+#### 3. Plotting Functions
+- **Histogram**: Create histograms with customizable bins, colors, and layout options.
+- **Line Plot**: Generate line plots with support for rolling averages and custom styling.
+- **Box Plot**: Display box plots for analyzing distributions, with flexible layout and color options.
+
+Example usage:
+```python
+# Creating a histogram of resting heart rate
+create_histogram(df, x_axis="Resting Heartrate", title="Resting Heartrate Distribution")
+
+# Creating a rolling average line plot for step count
+create_line_plot(
+    df, x_axis="date", y_axis="Step Count", rolling_average=True, rolling_window_days=14
+)
+
+# Creating a box plot for sleep hours by day of the week
+create_box_plot(df, x_axis="day_of_week", y_axis="Sleep Hours", title="Sleep Hours by Day")
+```
+
+#### 4. Plot Examples
+![Rolling Step count](src/analysis/plots/examples/rolling_step_count.png)
+![Sleep by Day of Week](src/analysis/plots/examples/sleep_by_day_of_week.png)
+![Sleep Hours Histogram](src/analysis/plots/examples/sleep_hours_histogram.png)
+
 
 
 
