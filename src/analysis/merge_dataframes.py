@@ -60,7 +60,6 @@ class DataFrameMerger:
                 "duration",
                 "Workout Hours",
             )
-
             # Pivoting activity and health data
             pivoted_activity_df = self.pivot_data(
                 self.activity_df,
@@ -74,7 +73,6 @@ class DataFrameMerger:
                 "type",
                 "value",
             )
-
             # Merging the dataframes on 'date' and other columns
             merged_df = pivoted_activity_df.merge(
                 pivoted_health_df,
@@ -98,7 +96,6 @@ class DataFrameMerger:
 
             # Map weekdays and months
             merged_df = self.map_weekdays_and_months(merged_df)
-
             return merged_df
         except Exception as e:
             logger.error(f"Error merging dataframes: {e}")

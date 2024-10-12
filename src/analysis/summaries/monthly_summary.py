@@ -54,13 +54,18 @@ def get_monthly_sum_summary(df):
     - Workout Hours: Hours (h)
     - Sleep Hours: Hours (h)
     """
-    df["Month"] = pd.Categorical(df["Month"], categories=MONTH_ORDER, ordered=True)
+    # print(df.columns())
+    df["Month"] = pd.Categorical(df["month"], categories=MONTH_ORDER, ordered=True)
+
+    # Grouping the data
     grouped_df = (
         df.groupby("Month", observed=False).sum(numeric_only=True).reset_index()
     )
-    grouped_df = grouped_df.round(1)
-    grouped_df = grouped_df.sort_values("Month")
 
+    grouped_df = grouped_df.round(1)
+    # grouped_df = grouped_df.sort_values("Month")
+
+    # Columns that we want to keep
     columns_to_keep = [
         "Month",
         "Energy Burned",
@@ -72,6 +77,14 @@ def get_monthly_sum_summary(df):
         "Sleep Hours",
     ]
 
-    grouped_df = grouped_df[columns_to_keep]
+    # Only keep the columns that exist in the dataframe
+    existing_columns_to_keep = [
+        col for col in columns_to_keep if col in grouped_df.columns
+    ]
+
+    if not existing_columns_to_keep:
+        raise KeyError("None of the required columns are present in the DataFrame.")
+
+    grouped_df = grouped_df[existing_columns_to_keep]
 
     return grouped_df

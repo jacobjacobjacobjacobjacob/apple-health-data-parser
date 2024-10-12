@@ -1,6 +1,5 @@
 # src/analysis/analysis.py
 
-# from src.analysis.plots.plots import create_histogram
 from src.analysis.load_dataframes import DataFrameLoader
 from src.analysis.merge_dataframes import DataFrameMerger
 from src.analysis.summaries.monthly_summary import (
@@ -26,6 +25,7 @@ def get_merged_dataframe(dataframes):
 
 if __name__ == "__main__":
     dataframes = load_dataframes()
+
     merged_df = get_merged_dataframe(dataframes)
 
     monthly_mean_summary = get_monthly_mean_summary(df=merged_df)
