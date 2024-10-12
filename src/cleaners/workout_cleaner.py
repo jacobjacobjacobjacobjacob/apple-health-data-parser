@@ -44,11 +44,10 @@ class WorkoutCleaner(BaseCleaner):
         """Orchestrates the data cleaning process."""
         logger.info("Loading JSON data for cleaning.")
         self.df = self.load_json_data()
-
         if self.df is not None:
             logger.info("Cleaning workout data.")
 
-     
+
             self.df = self.filter_by_year()
             # Extract workout types
             self.df["workout_type"] = self.df["workout_type"].apply(
