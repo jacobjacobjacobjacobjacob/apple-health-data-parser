@@ -1,14 +1,24 @@
+# Ignore Jupyter Notebook files
 *.ipynb
+
+# Ignore Python bytecode and cache directories
+__pycache__/
+*.py[cod]
+*.pytest_cache
+
+# Ignore virtual environment directory
+*.venv/
+
+# Ignore common export files and checkpoints
+ipynb_checkpoints/
+.DS_Store
+export.zip
+
+# Ignore data files
+*.csv
+*.json
 *.gpx
 *.xml
-*.json
-*.venv
-*.csv
-.pytest_cache
-__pychache__
-ipynb_checkpoints
-export.zip
-.DS_store
-/__pychache__/
-*.py[cod]
-tests/
+
+# Ignore Apple Health Export
+data/raw/apple_health_export/
