@@ -12,3 +12,5 @@ HK_RUNNING_GROUND_CONTACT_TIME = "HKQuantityTypeIdentifierRunningGroundContactTi
 HK_RUNNING_VERTICAL_OSCILLATION = "HKQuantityTypeIdentifierRunningVerticalOscillation"
 HK_RUNNING_POWER = "HKQuantityTypeIdentifierRunningPower"
 HK_RUNNING_SPEED = "HKQuantityTypeIdentifierRunningSpeed"
+HK_CAFFEINE_CONSUMPTION = "HKQuantityTypeIdentifierDietaryCaffeine"
+HK_MINDFUL_SESSION = "HKCategoryTypeIdentifierMindfulSession"
