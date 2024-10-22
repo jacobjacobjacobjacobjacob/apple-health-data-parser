@@ -13,6 +13,8 @@ from src.constants.health import (
     HK_WALKING_HEARTRATE,
     HK_RUNNING_STRIDE_LENGTH,
     HK_RUNNING_GROUND_CONTACT_TIME,
+    HK_CAFFEINE_CONSUMPTION,
+    HK_MINDFUL_SESSION
 )
 from src.parsers.base_parser import BaseParser
 
@@ -119,3 +121,19 @@ class RunningPowerParser(BaseParser):
         if elem.tag == "Record" and elem.attrib.get("type") == HK_RUNNING_POWER:
             record = self.extract_common_fields(elem, "Running Power")
             self.data.append(record)
+
+class CaffeineParser(BaseParser):
+    """A parser for extracting the amount and time of caffeine consumption"""
+    def handle_element(self, elem):
+        if elem.tag == "Record" and elem.attrib.get("type") == HK_CAFFEINE_CONSUMPTION:
+            record = self.extract_common_fields(elem, "Caffeine Consumption")
+            self.data.append(record)
+            
+class MindfulSessionParser(BaseParser):
+    """A parser for extracting the amount and time of caffeine consumption"""
+    def handle_element(self, elem):
+        if elem.tag == "Record" and elem.attrib.get("type") == HK_MINDFUL_SESSION:
+            record = self.extract_common_fields(elem, "Mindful Session")
+            self.data.append(record)
+
+
