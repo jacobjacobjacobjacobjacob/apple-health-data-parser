@@ -34,21 +34,58 @@ class BaseCleaner:
 
         return self.df
 
-    def group_by_date(self, agg_type: str):
-        """Groups the DataFrame by the 'date' column."""
+    # def group_by_date(self, agg_type: str):
+    #     """Groups the DataFrame by the 'date' column."""
+    #     self.df["date"] = pd.to_datetime(self.df["date"])
+    #     self.df["just_date"] = self.df["date"].dt.date
+
+    #     df_grouped = (
+    #         self.df.groupby(["just_date", "type"])
+    #         .agg(
+    #             {
+    #                 "value": agg_type,
+    #                 "unit": "first",
+    #             }  # Use mean for 'value', take first 'unit'
+    #         )
+    #         .reset_index()
+    #     )
+    #     df_grouped.rename(columns={"just_date": "date"}, inplace=True)
+
+    #     return df_grouped
+    def group_by_date(self, agg_type: str = "mean"):
+        """Groups the DataFrame by the 'date' column and applies aggregation on numeric columns."""
+        # Convert 'date' column to datetime
         self.df["date"] = pd.to_datetime(self.df["date"])
         self.df["just_date"] = self.df["date"].dt.date
 
+        # Ensure 'value' is numeric 
+        self.df["value"] = pd.to_numeric(self.df["value"], errors="coerce")
+
+
+        # Only numeric columns will be aggregated
+        numeric_columns = self.df.select_dtypes(include='number').columns.tolist()
+
+        # Log the numeric and non-numeric columns
+        non_numeric_cols = self.df.select_dtypes(exclude=['number']).columns
+        logger.info(f"Non-numeric columns:\n{self.df[non_numeric_cols].head(10)}")
+        logger.info(f"Aggregating the following numeric columns: {numeric_columns}")
+
+        # Apply mean to numeric columns, first for non-numeric ones
+        agg_rules = {col: agg_type for col in numeric_columns}
+        agg_rules.update({"unit": "first"})  # Handle non-numeric columns
+
+        # Perform the aggregation without making 'type' part of the index
         df_grouped = (
-            self.df.groupby(["just_date", "type"])
-            .agg(
-                {"value": agg_type, "unit": "first"}
-            )  # Aggregate the data by aggregation type
-            .reset_index()
+            self.df.groupby(["just_date", "type"], as_index=False)
+            .agg(agg_rules)
         )
+
+        # Rename 'just_date' to 'date' for clarity
         df_grouped.rename(columns={"just_date": "date"}, inplace=True)
 
+        # Return the grouped DataFrame
         return df_grouped
+
 
     def split_datetime_columns(self):
         """Splits a 'date' column into 'year', 'month', 'day', and 'day_of_week' columns."""
@@ -61,9 +98,9 @@ class BaseCleaner:
         # Split 'date' into 'year', 'month', 'day', and 'day_of_week'
         self.df["year"] = self.df["date"].dt.year
         self.df["month"] = self.df["date"].dt.month
-        
+
         self.df["day_of_week"] = self.df["date"].dt.weekday + 1  # Monday=1, Sunday=7
-        
+
         return self.df
 
     def reorder_datetime_columns(self):
@@ -71,7 +108,6 @@ class BaseCleaner:
         column_order = ["date", "day_of_week", "month", "year"]
         remaining_columns = [col for col in self.df.columns if col not in column_order]
         self.df = self.df[column_order + remaining_columns]
-        
 
         return self.df
 
