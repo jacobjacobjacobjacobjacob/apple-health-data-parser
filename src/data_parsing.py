@@ -20,6 +20,8 @@ from src.parsers.health_parsers import (
     RunningVerticalOscillationParser,
     RunningSpeedParser,
     RunningPowerParser,
+    CaffeineParser,
+    MindfulSessionParser,
 )
 from src.parsers.activity_parsers import (
     ExerciseTimeParser,
@@ -58,6 +60,8 @@ def parse_all_data() -> dict:
             RunningVerticalOscillationParser,
             RunningSpeedParser,
             RunningPowerParser,
+            CaffeineParser,
+            MindfulSessionParser,
         ],
         "sleep": [SleepDataParser],
         "activity": [
@@ -73,7 +77,7 @@ def parse_all_data() -> dict:
     # Process each category of data
     for category, parser_classes in parsers.items():
         category_data = []
-        logger.info(f"Started parsing category: {category}")
+        logger.debug(f"Started parsing category: {category}")
 
         for parser_class in parser_classes:
             try:
